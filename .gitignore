@@ -1,0 +1,6 @@
+bitbucket/config.yml
+bitbucket/.terraform
+bitbucket/.terraform.lock.hcl
+bitbucket/config.yml
+bitbucket/terraform.tfstate.backup
+bitbucket/terraform.tfstate

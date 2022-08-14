@@ -1,0 +1,7 @@
+---
+access:
+  username: your_bitbucket_username
+  password: your_bitbucket_app_password
+
+workspace:
+   workspaceID: your_bitbucket_work_space_ID
