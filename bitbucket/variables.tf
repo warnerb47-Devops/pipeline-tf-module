@@ -83,3 +83,12 @@ variable "ssh_key" {
     private_key = "value"
   }
 }
+
+variable "known_hosts" {
+  type = list(object({
+    hostname = string
+    key_type = bool
+    key = string
+  }))
+  default = []
+}

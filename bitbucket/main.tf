@@ -120,17 +120,19 @@ resource "bitbucket_pipeline_ssh_key" "ssh_key" {
   private_key = local.input.ssh_key.private_key
 }
 
-# resource "bitbucket_pipeline_ssh_known_host" "test" {
-#   provider = bitbucket2
-#   workspace  = data.bitbucket_workspace.workspace_selected.uuid
-#   repository = data.bitbucket_repository.repository_selected.name
-#   hostname   = "example.com:22"
+# add known host
+resource "bitbucket_pipeline_ssh_known_host" "known_hosts" {
+  count = length(local.input.known_hosts)
+  provider = bitbucket
+  workspace   = local.input.global.workspaceID
+  repository = local.input.global.repository_slug
+  hostname   = local.input.known_hosts[count.index].hostname
 
-#   public_key {
-#     key_type = "Ed25519"  # Ed25519 ECDSA RSA DSA
-#     key      = "AAAAC3NzaC1lZDI1NTE5AAAAIKqP3Cr632C2dNhhgKVcon4ldUSAeKiku2yP9O9/bDtY"
-#   }
-# }
+  public_key {
+    key_type = local.input.known_hosts[count.index].key_type  # Ed25519 ECDSA RSA DSA
+    key      = local.input.known_hosts[count.index].key
+  }
+}
 
 # print result 
 # output "workspace" {
