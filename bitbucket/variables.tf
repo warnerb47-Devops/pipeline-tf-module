@@ -71,3 +71,15 @@ variable "staging_variables" {
     key = "value"
   }]
 }
+
+
+variable "ssh_key" {
+  type = object({
+  public_key = string
+  private_key = string
+  })
+  default = {
+    public_key = "value"
+    private_key = "value"
+  }
+}

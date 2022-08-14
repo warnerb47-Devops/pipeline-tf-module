@@ -111,14 +111,14 @@ resource "bitbucket_deployment_variable" "staging_variables" {
   secured    = local.input.staging_variables[count.index].secured
 }
 
-
-# resource "bitbucket_pipeline_ssh_key" "ssh_key" {
-#   provider = bitbucket2
-#   workspace  = data.bitbucket_workspace.workspace_selected.uuid
-#   repository = data.bitbucket_repository.repository_selected.name
-#   public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3TYmESsR2bqxEbxU1V/gQWmGyMNNS9nX4qt4Oz+6sOohM4snRTHPdL7IoDADUIa0dlGHWltfwwnAOjaUcOUTjfzzza5xi7pp0Ed5Rqaf+zbdmY3bjWPe8KCNYhygy4GE2ligLrDelK8gYoe0ZNPHCLPvo4nHbQCn439rksODwZAxpsauwzP4Y8AGvZ4FfdiVooJs1DUypVDrmUvMOALWI2KNOI06MNcD/VoYgQi8SWnAXgFw4EdBM58rprwZdtagjys798JC46IVLb467taPwZcOwSQAxAf0/JmR3XSl4uLvw/7yf3lMn6S2m1lL92IWcmiqyzgujQbWNRbOjuyIJ"
-#   private_key = "test-key"
-# }
+# add ssh key
+resource "bitbucket_pipeline_ssh_key" "ssh_key" {
+  provider = bitbucket
+  workspace   = local.input.global.workspaceID
+  repository = local.input.global.repository_slug
+  public_key  = local.input.ssh_key.public_key
+  private_key = local.input.ssh_key.private_key
+}
 
 # resource "bitbucket_pipeline_ssh_known_host" "test" {
 #   provider = bitbucket2
