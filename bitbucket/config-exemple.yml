@@ -34,3 +34,14 @@ staging_variables:
       value: some-variable-value,
       secured: false
     }
+
+ssh_key:
+  public_key: public_key
+  private_key: private_key
+
+known_hosts:
+  - {
+      hostname: '18.218.239.227:22',
+      key_type: 'RSA', # Ed25519 ECDSA RSA DSA
+      key: 'the plain pyblic key',
+    }

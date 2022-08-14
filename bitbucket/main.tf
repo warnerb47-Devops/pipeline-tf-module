@@ -1,12 +1,3 @@
-# terraform {
-#   required_providers {
-#     bitbucket = {
-#       source  = "DrFaust92/bitbucket"
-#       version = "2.17.0"
-#     }
-#   }
-# }
-
 terraform {
   required_providers {
     bitbucket = {
