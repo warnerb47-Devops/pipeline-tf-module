@@ -3,5 +3,34 @@ access:
   username: your_bitbucket_username
   password: your_bitbucket_app_password
 
-workspace:
-   workspaceID: your_bitbucket_work_space_ID
+global:
+   workspaceID: your_workspace_id
+   repository_slug: your_repository_slug
+   repository_uuid: your_repository_uuid
+
+deploy_keys:
+  - {
+      label: test,
+      key: your_public_key
+    }
+
+repositories_variables:
+  - {
+      key: some_variable_name,
+      value: some_variable_name,
+      secured: false
+    }
+
+production_variables:
+  - {
+      key: some_variable_name,
+      value: some-variable-value,
+      secured: true
+    }
+
+staging_variables:
+  - {
+      key: some_variable_name,
+      value: some-variable-value,
+      secured: false
+    }
