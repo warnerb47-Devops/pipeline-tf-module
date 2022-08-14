@@ -9,54 +9,65 @@ variable "access" {
   }
 }
 
-variable "workspace" {
+variable "global" {
   type = object({
     workspaceID = string
+    repository_slug = string
+    repository_uuid = string
   })
   default = {
     workspaceID = "value"
+    repository_slug = "value"
+    repository_uuid = "value"
   }
-}
-
-variable "repositories" {
-  type = list(object({
-    slug = string
-  }))
-  default = [
-    {
-      slug = "value"
-    }
-  ]
 }
 
 variable "deploy_keys" {
   type = list(object({
-    repository_slug = string
-      label = string
-      key = string
+    label = string
+    key = string
   }))
-  default = [
-    {
-      repository_slug = "value"
-      label = "value"
-      key = "value"
-    }
-  ]
+  default = [{
+    label = "value"
+    key = "value"
+  }]
 }
 
 variable "repositories_variables" {
   type = list(object({
-    repository_slug = string
-      value = string
-      key = string
-      secured = bool
+    value = string
+    secure = bool
+    key = string
   }))
-  default = [
-    {
-      repository_slug = "value"
-      value = "value"
-      key = "value"
-      secured = false
-    }
-  ]
+  default = [{
+    value = "value"
+    secure = false
+    key = "value"
+  }]
+}
+
+variable "production_variables" {
+  type = list(object({
+    value = string
+    secure = bool
+    key = string
+  }))
+  default = [{
+    value = "value"
+    secure = false
+    key = "value"
+  }]
+}
+
+variable "staging_variables" {
+  type = list(object({
+    value = string
+    secure = bool
+    key = string
+  }))
+  default = [{
+    value = "value"
+    secure = false
+    key = "value"
+  }]
 }
