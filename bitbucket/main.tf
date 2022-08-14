@@ -52,7 +52,7 @@ data "bitbucket_workspace" "workspace_selected" {
 #   name        = local.input.repositories[count.index].slug
 # }
 
-# # add deploy key
+# create deploy keys
 resource "bitbucket_deploy_key" "deploy_key" {
   provider= bitbucket
   count = length(local.input.deploy_keys)
@@ -62,15 +62,16 @@ resource "bitbucket_deploy_key" "deploy_key" {
   key        = local.input.deploy_keys[count.index].key
 }
 
-# # add repository variable
-# resource "bitbucket_pipeline_variable" "repository_variable" {
-#   provider= bitbucket
-#   workspace  = data.bitbucket_workspace.workspace_selected.uuid
-#   repository = data.bitbucket_repository.repository_selected.name
-#   key        = "some_variable_name"
-#   value      = "some-variable-value"
-#   secured    = false
-# }
+# add repositories variables
+resource "bitbucket_pipeline_variable" "repository_variable" {
+  provider= bitbucket
+  count = length(local.input.repositories_variables)
+  workspace  = data.bitbucket_workspace.workspace_selected.uuid
+  repository = local.input.repositories_variables[count.index].repository_slug
+  key        = local.input.repositories_variables[count.index].key
+  value      = local.input.repositories_variables[count.index].value
+  secured    = local.input.repositories_variables[count.index].secured
+}
 
 # # add deployment
 # resource "bitbucket_deployment" "deployment" {

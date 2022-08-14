@@ -43,3 +43,20 @@ variable "deploy_keys" {
     }
   ]
 }
+
+variable "repositories_variables" {
+  type = list(object({
+    repository_slug = string
+      value = string
+      key = string
+      secured = bool
+  }))
+  default = [
+    {
+      repository_slug = "value"
+      value = "value"
+      key = "value"
+      secured = false
+    }
+  ]
+}
