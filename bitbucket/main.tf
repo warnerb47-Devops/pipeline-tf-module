@@ -105,10 +105,11 @@ resource "bitbucket_deployment_variable" "staging_variables" {
 # add ssh key
 resource "bitbucket_pipeline_ssh_key" "ssh_key" {
   provider = bitbucket
+  count = length(local.input.ssh_key)
   workspace   = local.input.global.workspaceID
   repository = local.input.global.repository_slug
-  public_key  = local.input.ssh_key.public_key
-  private_key = local.input.ssh_key.private_key
+  public_key  = local.input.ssh_key[count.index].public_key
+  private_key = local.input.ssh_key[count.index].private_key
 }
 
 # add known host
