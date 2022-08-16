@@ -7,8 +7,8 @@ pipelines:
           name: 'Init and plan'
           script:
             - git clone git@bitbucket.org:warnerb47/configuration.git
-            - cp configuration/aws/aws-security-config.yml ./aws/config.yml
-            - cd aws
+            - cp configuration/bitbucket/web-app.yml ./bitbucket/config.yml
+            - cd bitbucket
             - terraform init
             - terraform plan
       - step:
@@ -23,12 +23,8 @@ pipelines:
         trigger: 'manual'
         script:
           - git clone git@bitbucket.org:warnerb47/configuration.git
-          - cp configuration/aws/aws-security-config.yml ./aws/config.yml
-          - cd aws
+          - cp configuration/bitbucket/web-app.yml ./bitbucket/config.yml
+          - cd bitbucket
           - terraform init
           - terraform plan
           - terraform apply -auto-approve
-    - step:
-        name: 'Trigger vm-tfm-module pipeline'
-        script:
-          - echo "now trigger vm-tfm-module pipeline" 
